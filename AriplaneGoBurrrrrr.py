@@ -1,12 +1,13 @@
 import tkinter
-from tkinter.constants import CENTER, N, TOP
+from tkinter.constants import CENTER, END, N, TOP
+from typing import AsyncGenerator
     
     
 
 planes = {"Cessna": [5, 5] , "747": [] , "B2 Bomber": [] , "B1 Bomber": []}
 
 pWindow=None
-
+variable = None
 def process():
     
     airDensity = 1.225
@@ -32,11 +33,14 @@ def process():
 
 def presetsWindow():
     global pWindow
+    global variable
     pWindow = tkinter.Tk()
     pWindow.title("Presets")
     pWindow.geometry("400x200")
+    variable = tkinter.StringVar(pWindow)
+    variable.set("None")
     CustomMenu = tkinter.OptionMenu(pWindow, variable, *list(planes.keys()))
-    CustomMenu.place(relx = 0.4, rely = 0.3)
+    CustomMenu.place(relx=0.35, rely=0.3, width=135)
     tkinter.Label(pWindow, text="Presets", font = ("Arial", 25)).place(relx = 0.4, rely = 0.1)
     LoadButton = tkinter.Button(pWindow, text='Load', width=10, command=Load)
     SaveButton = tkinter.Button(pWindow, text='Save', width=10, command=pWindow.destroy)
@@ -52,10 +56,16 @@ def Load():
     global pWindow
     calculatePresets()
     pWindow.destroy()
+
+
 def calculatePresets(): 
     input = planes[variable.get()]
     cl = list(input)[0]
     area = list(input)[1]
+    e2.delete(0, END)
+    e3.delete(0, END)
+    e4.delete(0, END)
+    e5.delete(0, END)
     e3.insert(0,str(pow(1/(cl/75), 0.5)))
     e4.insert(0, 10.0)
     e5.insert(0, 5.0) 
