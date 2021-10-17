@@ -57,6 +57,10 @@ def Load():
     calculatePresets()
     pWindow.destroy()
 
+def Save():
+    pass
+def Remove():
+    pass
 
 def calculatePresets(): 
     input = planes[variable.get()]
