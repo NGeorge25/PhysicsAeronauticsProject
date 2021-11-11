@@ -4,7 +4,7 @@ from typing import AsyncGenerator
     
     
 
-planes = {"Cessna": [5, 5] , "747": [] , "B2 Bomber": [] , "B1 Bomber": []}
+planes = {"Cessna": [1.6, 174] , "747": [] , "B2 Bomber": [] , "B1 Bomber": []}
 
 pWindow=None
 variable = None
@@ -121,13 +121,13 @@ tkinter.Label(master, text='         ').grid(row = 0, column = 2)
 tkinter.Label(master, text='         ').grid(row = 7, column = 1)
 tkinter.Label(master, text='         ').grid(row = 8, column = 1)
 
-tkinter.Label(master, text='Velocity').grid(row=1)
-tkinter.Label(master, text='Area').grid(row=2)
-tkinter.Label(master, text='Chord Length').grid(row=3)
-tkinter.Label(master, text='Upper Length').grid(row=4)
-tkinter.Label(master, text='Lower Length').grid(row=5)
-tkinter.Label(master, text='Pressure Difference: ').grid(row=1, column = 4)
-tkinter.Label(master, text='Force of Lift: ').grid(row=2, column=4)
+tkinter.Label(master, text='Velocity (m/s)').grid(row=1)
+tkinter.Label(master, text='Area (sq m)').grid(row=2)
+tkinter.Label(master, text='Chord Length (m)').grid(row=3)
+tkinter.Label(master, text='Upper Length (m)').grid(row=4)
+tkinter.Label(master, text='Lower Length (m)').grid(row=5)
+tkinter.Label(master, text='Pressure Difference (Pa): ').grid(row=1, column = 4)
+tkinter.Label(master, text='Force of Lift (N): ').grid(row=2, column=4)
 tkinter.Label(master, text='Coefficient of Lift: ').grid(row=3, column=4)
 
 master.mainloop()
