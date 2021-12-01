@@ -1,10 +1,13 @@
 import tkinter
 from tkinter.constants import CENTER, END, N, TOP
 from typing import AsyncGenerator
-    
-    
+import json    
 
-planes = {"Cessna": [1.6, 174] , "747": [] , "B2 Bomber": [] , "B1 Bomber": []}
+with open('data.json', 'r') as openfile:
+    # Reading from json file
+    json_object = json.load(openfile)
+planes = json_object
+print(planes)
 
 pWindow=None
 variable = None
@@ -43,8 +46,8 @@ def presetsWindow():
     CustomMenu.place(relx=0.35, rely=0.3, width=135)
     tkinter.Label(pWindow, text="Presets", font = ("Arial", 25)).place(relx = 0.4, rely = 0.1)
     LoadButton = tkinter.Button(pWindow, text='Load', width=10, command=Load)
-    SaveButton = tkinter.Button(pWindow, text='Save', width=10, command=pWindow.destroy)
-    RemoveButton = tkinter.Button(pWindow, text='Remove', width=10, command=pWindow.destroy)
+    SaveButton = tkinter.Button(pWindow, text='Save', width=10, command=Save)
+    RemoveButton = tkinter.Button(pWindow, text='Remove', width=10, command=Remove)
 
     SaveButton.place(relx = 0.7, rely = 0.5)
     LoadButton.place(relx = 0.375, rely = 0.5)
@@ -58,9 +61,21 @@ def Load():
     pWindow.destroy()
 
 def Save():
-    pass
+    tempStr = "Save1"
+
+    if(list(dict(planes).keys())[-1][0:4] == "Save"):
+        tempStr = "Save"+str(int(list(dict(planes).keys())[-1][-1])+1)
+
+    planes[tempStr] = [(pow(float(e4.get()), 2)-pow(float(e5.get()), 2))/pow(float(e3.get()),2), float(e2.get())]
+    with open("data.json", "w") as outfile:
+        json.dump(planes, outfile)
+        pWindow.destroy()
+
 def Remove():
-    pass
+    del planes[variable.get()]
+    with open("data.json", "w") as outfile:
+        json.dump(planes, outfile)
+        pWindow.destroy()
 
 def calculatePresets(): 
     input = planes[variable.get()]
